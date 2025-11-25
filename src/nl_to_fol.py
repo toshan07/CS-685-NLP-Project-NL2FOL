@@ -513,6 +513,3 @@ if __name__ == '__main__':
     df['Logical Form']= final_lfs
     df['Logical Form 2']= final_lfs2
     df.to_csv(f'results/{args.run_name}.csv',index=False)
-
-
-articles,Claim,Implication,Referring Expressions - Claim,Referring Expressions - Implication,Property Implications,Equal Entities,Subset Entities,Claim Lfs,Implication Lfs,Logical Form,Logical Form 2, result
