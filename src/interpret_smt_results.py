@@ -1,6 +1,34 @@
-from llm import get_llm_result
 import json
 import sys
+
+import google.generativeai as genai
+from openai import OpenAI
+import time
+import os
+
+genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+#client = OpenAI()
+
+def get_llm_result(prompt, model_type):
+    if model_type=='gemini':
+        model = genai.GenerativeModel("gemini-2.5-flash")
+        contents = [
+            {
+                "role": "user",
+                "parts": [{"text": prompt}]
+            }
+        ]
+        response = model.generate_content(contents)
+        return response.text
+    elif model_type=='gpt':
+        completion = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
+        )
+        return completion.choices[0].message.content
+
 class SMTResults:
     def __init__(self, output_file_path, sentence_data_path):
         with open(output_file_path, "r") as f:
@@ -15,10 +43,10 @@ class SMTResults:
             self.formula_type = "logical fallacy"
             with open(sentence_data_path, "r") as f:
                 data = json.load(f)
-            with open("prompt_counter_example.txt", "r") as f:
+            with open("prompts/prompt_counter_example.txt", "r") as f:
                 prompt = f.read().format(data["Claim"], data["Implication"], data["Referring expressions"], data["Properties"], data["Formula"], counter_model)
 
-            self.counter_example = get_llm_result(prompt)
+            self.counter_example = get_llm_result(prompt, "gemini")
         
     def get_results(self, get_interpretation=True):
         print("The given statement is a {0}".format(self.formula_type))
@@ -33,5 +61,3 @@ if __name__ == "__main__":
     output_file_path = sys.argv[1]
     sentence_data_path = sys.argv[2]
     SMTResults(output_file_path, sentence_data_path).get_results()
-    
-        

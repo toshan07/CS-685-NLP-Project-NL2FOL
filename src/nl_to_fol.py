@@ -15,7 +15,7 @@ import time
 
 token = os.environ["HUGGINGFACE_HUB_TOKEN"]
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-client = OpenAI()
+#client = OpenAI()
 
 class NL2FOL:
     def __init__(self, sentence, model_type, pipeline, tokenizer, nli_model, nli_tokenizer, debug=False, direct = False):
@@ -61,13 +61,16 @@ class NL2FOL:
             return sequences[0]["generated_text"].removeprefix(prompt)
 
         elif model_type=='gemini':
-            completion = client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {"role": "user", "content": prompt}
+            model = genai.GenerativeModel("gemini-2.5-flash")
+            contents = [
+                {
+                    "role": "user",
+                    "parts": [{"text": prompt}]
+                }
             ]
-            )
-            return completion.choices[0].message.content
+            response = model.generate_content(contents)
+            return response.text
+
         elif model_type=='gpt':
             completion = client.chat.completions.create(
             model="gpt-4o",
@@ -510,3 +513,6 @@ if __name__ == '__main__':
     df['Logical Form']= final_lfs
     df['Logical Form 2']= final_lfs2
     df.to_csv(f'results/{args.run_name}.csv',index=False)
+
+
+articles,Claim,Implication,Referring Expressions - Claim,Referring Expressions - Implication,Property Implications,Equal Entities,Subset Entities,Claim Lfs,Implication Lfs,Logical Form,Logical Form 2, result

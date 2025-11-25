@@ -108,20 +108,24 @@ The project supports several datasets for evaluation:
 
 Here is a complete example of running the pipeline on the `logic` dataset using Gemini 2.5:
 
-1.  **Generate Logic**:
+1.  **Generate Logic Climate**:
     ```bash
-    python src/nl_to_fol.py --model_name gemini-2.5-flash --nli_model_name roberta-large-mnli --run_name test_run01 --length 50 --dataset logic
+    python src/nl_to_fol.py --model_name gemini-2.5-flash --nli_model_name roberta-large-mnli --run_name gemini-logicclimate --length 50 --dataset climate
     ```
 
 2.  **Verify Validity**:
     ```bash
-    python src/fol_to_cvc.py test_run_01
+    python src/fol_to_cvc.py results/gemini_logic_climate.csv
     ```
 
 3.  **Get Metrics**:
     ```bash
-    python eval/get_metrics.py results/test_run_01_results.csv
+    python eval/get_metrics.py results/gemini-logic_results.csv
     ```
 
+4.  **Interpret SMT Results**:
+    ```bash
+    python src/interpret_smt_results.py results/gemini-logic_smt/48.txt results/climate_run/48.json
+    ```
 ## Paper Link
 Link : https://arxiv.org/abs/2405.02318

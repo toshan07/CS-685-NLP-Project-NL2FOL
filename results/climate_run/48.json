@@ -1,0 +1,7 @@
+{
+    "Claim": " \" Adding more CO2 molecules to the atmosphere is similar to painting over a red wall with white paint.\"",
+    "Implication": " \" Most of the effect of adding CO2 molecules to the atmosphere is achieved with the initial addition.\"",
+    "Referring expressions": " CO2 molecules, atmosphere, red wall.  The first coat, white paint, red wall",
+    "Properties": "IsAddedCO2ToAtmosphere(a),  IsPaintedOverRedWallWithWhitePaint(a), IsAchievedWithInitialAddition(b),  IsAddedCO2ToAtmosphere(c)",
+    "Formula": "(exists a (IsAddedCO2ToAtmosphere(a) and IsPaintedOverRedWallWithWhitePaint(a))) -> (exists b (exists c (IsAddedCO2ToAtmosphere(c) and IsAchievedWithInitialAddition(b))))"
+}

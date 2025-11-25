@@ -1,0 +1,7 @@
+{
+    "Claim": " \"Defra spent \u00a312.5 million on an ocean acidification research program between 2009 and 2014.\"",
+    "Implication": " \"The issue of ocean acidification could have been resolved for next to nothing after a few hours of basic research.\"",
+    "Referring expressions": " Defra, ocean acidification research program, 2009, 2014  issue of ocean acidification, next to nothing, basic research.",
+    "Properties": " IsDefra(a),  WasBetween(c,d)  IsIssueOfOceanAcidification(e),  IsNextToNothing(f),  IsBasicResearch(g)",
+    "Formula": "(exists c (exists a (exists d (IsDefra(a) and WasBetween(c,d))))) -> (exists e (exists f (exists g (IsIssueOfOceanAcidification(e) and (IsNextToNothing(f) and IsBasicResearch(g))))))"
+}

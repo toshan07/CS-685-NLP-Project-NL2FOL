@@ -1,0 +1,7 @@
+{
+    "Claim": " \"The 2009 Black Saturday bushfires claimed the lives of 173 Australians.\"",
+    "Implication": " \"The number of deaths soared in the heatwave leading up to the fires.\"",
+    "Referring expressions": " 2009, Black Saturday, Australians  The number of deaths, heatwave, fires",
+    "Properties": " IsIn2009(a),  IsOnBlackSaturday(b),  AreAustralians(c)  IsSoared(d),  IsInHeatwave(e),  IsOnFires(f)",
+    "Formula": "(exists c (exists a (exists b (IsIn2009(a) and (IsOnBlackSaturday(b) and AreAustralians(c)))))) -> (exists e (exists d (exists f (IsSoared(d) and (IsInHeatwave(e) and IsOnFires(f))))))"
+}
