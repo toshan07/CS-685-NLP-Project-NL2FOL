@@ -125,7 +125,7 @@ Here is a complete example of running the pipeline on the `logic` dataset using 
 
 4.  **Interpret SMT Results**:
     ```bash
-    python src/interpret_smt_results.py results/gemini-logic_smt/48.txt results/climate_run/48.json
+    python src/interpret_smt_results.py results/gemini-logicclimate_smt/48_out.txt results/climate_run/48.json
     ```
 ## Paper Link
 Link : https://arxiv.org/abs/2405.02318
